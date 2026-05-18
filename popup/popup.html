@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="popup-header">
+    <h1>下载内容</h1>
+    <button class="icon-btn" id="open-manager" title="打开下载管理器" aria-label="打开下载管理器">
+      <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3zM19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+    </button>
+  </header>
+
+  <div class="popup-body">
+    <section id="active-section" class="hidden">
+      <div class="section-title">进行中</div>
+      <div id="active-list"></div>
+    </section>
+    <section id="recent-section" class="hidden">
+      <div class="section-title">最近</div>
+      <div id="recent-list"></div>
+    </section>
+    <div id="empty" class="empty hidden">
+      <div class="empty-illust">⬇</div>
+      <div>还没有下载记录</div>
+    </div>
+  </div>
+
+  <footer class="popup-footer">
+    <button class="footer-btn" id="open-manager-footer">打开下载管理器</button>
+  </footer>
+
+  <div id="menu-overlay" class="menu-overlay hidden"></div>
+  <div id="snackbar" class="snackbar hidden"><span id="snackbar-text"></span></div>
+
+  <script src="../lib/util.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

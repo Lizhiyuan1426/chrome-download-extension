@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Claude Code local config
+.claude/
+
+# Markdown docs (design / readme drafts kept local)
+*.md
+
+# Chrome extension build / signing artifacts
+*.crx
+*.pem
+*.zip
+
+# Dependencies (in case anyone adds tooling later)
+node_modules/
+
+# Logs
+*.log

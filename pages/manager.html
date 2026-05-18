@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>下载内容</title>
+  <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="menu-btn" title="菜单" aria-label="菜单">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      </button>
+      <h1>下载内容</h1>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="search" id="search" placeholder="搜索下载内容" autocomplete="off">
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <div id="empty" class="empty hidden">
+      <div class="empty-illust">⬇</div>
+      <div class="empty-text">还没有下载记录</div>
+    </div>
+    <div id="list"></div>
+  </main>
+
+  <div id="snackbar" class="snackbar hidden" role="status" aria-live="polite">
+    <span id="snackbar-text"></span>
+    <button id="snackbar-action" class="snackbar-action hidden"></button>
+  </div>
+
+  <div id="menu-overlay" class="menu-overlay hidden"></div>
+
+  <script src="../lib/util.js"></script>
+  <script src="manager.js"></script>
+</body>
+</html>

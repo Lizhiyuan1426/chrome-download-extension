@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "下载管理+",
+  "version": "0.1.0",
+  "description": "更好用的 Chrome 下载管理器，支持一键删除本地文件",
+  "permissions": ["downloads", "storage", "tabs", "webNavigation"],
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+  "action": {
+    "default_title": "下载管理+",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "commands": {
+    "open-manager": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+J",
+        "mac": "Command+Shift+J"
+      },
+      "description": "打开下载管理器"
+    }
+  }
+}
