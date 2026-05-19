@@ -3,7 +3,7 @@
   "name": "下载管理+",
   "version": "0.1.0",
   "description": "更好用的 Chrome 下载管理器，支持一键删除本地文件",
-  "permissions": ["downloads", "storage", "tabs", "webNavigation"],
+  "permissions": ["downloads", "downloads.open", "storage", "tabs", "webNavigation"],
   "background": {
     "service_worker": "background/service_worker.js"
   },

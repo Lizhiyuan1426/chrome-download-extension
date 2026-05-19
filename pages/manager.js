@@ -171,7 +171,7 @@ function renderCard(item) {
   title.className = 'card-title';
   title.textContent = basename(item.filename) || '(未命名)';
   if (item.state === 'complete' && item.exists !== false) {
-    title.addEventListener('click', () => sendMsg({ type: 'open', id: item.id }));
+    title.addEventListener('click', () => chrome.downloads.open(item.id));
   }
   if (item.exists === false) {
     const tag = document.createElement('span');
@@ -253,7 +253,7 @@ function buildActions(item, container, card) {
   }
 
   if (item.state === 'complete' && item.exists !== false) {
-    addTextBtn(container, '在文件夹中显示', () => sendMsg({ type: 'show', id: item.id }));
+    addTextBtn(container, '在文件夹中显示', () => chrome.downloads.show(item.id));
   }
   addOverflow(container, item, card);
 }
@@ -302,8 +302,8 @@ function openMenu(anchor, item, card) {
 
   const fileExists = item.exists !== false && item.state === 'complete';
   if (fileExists) {
-    addMenuItem(menu, '在文件夹中显示', () => sendMsg({ type: 'show', id: item.id }));
-    addMenuItem(menu, '打开', () => sendMsg({ type: 'open', id: item.id }));
+    addMenuItem(menu, '在文件夹中显示', () => chrome.downloads.show(item.id));
+    addMenuItem(menu, '打开', () => chrome.downloads.open(item.id));
   }
   if (item.url) {
     addMenuItem(menu, '复制下载链接', async () => {

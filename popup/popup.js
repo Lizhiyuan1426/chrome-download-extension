@@ -26,7 +26,12 @@ async function init() {
 
   chrome.runtime.onMessage.addListener(handleWorkerMessage);
 
-  document.addEventListener('click', () => closeMenu(), true);
+  document.addEventListener('click', (e) => {
+    if (!document.querySelector('.menu')) return;
+    if (e.target.closest('.menu')) return;
+    e.stopPropagation();
+    closeMenu();
+  }, true);
   els.menuOverlay.addEventListener('click', () => closeMenu());
 
   sendMsg({ type: 'clear-badge' });
@@ -162,6 +167,14 @@ function renderActiveRow(item) {
 function renderRecentRow(item) {
   const row = document.createElement('div');
   row.className = 'row';
+  const canOpen = item.state === 'complete' && item.exists !== false;
+  if (canOpen) {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => {
+      chrome.downloads.open(item.id);
+      window.close();
+    });
+  }
   row.appendChild(renderIcon(item));
 
   const body = document.createElement('div');
@@ -170,13 +183,6 @@ function renderRecentRow(item) {
   const title = document.createElement('div');
   title.className = 'row-title';
   title.textContent = basename(item.filename);
-  if (item.state === 'complete' && item.exists !== false) {
-    title.style.cursor = 'pointer';
-    title.addEventListener('click', () => {
-      sendMsg({ type: 'open', id: item.id });
-      window.close();
-    });
-  }
   body.appendChild(title);
 
   const meta = document.createElement('div');
@@ -254,11 +260,11 @@ function openMenu(anchor, item, row) {
   const fileExists = item.exists !== false && item.state === 'complete';
   if (fileExists) {
     addMenuItem(menu, '打开', () => {
-      sendMsg({ type: 'open', id: item.id });
+      chrome.downloads.open(item.id);
       window.close();
     });
     addMenuItem(menu, '在文件夹中显示', () => {
-      sendMsg({ type: 'show', id: item.id });
+      chrome.downloads.show(item.id);
       window.close();
     });
   }
